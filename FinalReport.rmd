@@ -1,7 +1,7 @@
 ---
-title: "Aides Drug"
-author: "Put your name here!"
-date: "put the date here"
+title: "Aids Drug"
+author: "Sammy"
+date: "May 22, 2020"
 output: html_document
 ---
 
@@ -21,7 +21,23 @@ A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze 
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
 
-#Results
+Since each question is categorical-categorical we use the same methods in each.
+
+Graphical summary: bar chart
+Numeric summary: cross tabulation, table form.
+Inference: Chi-squared test, and Fishers exact test.
+
+The conclusions for all questions will be summarized in at the end.
+
+
+
+does the vacine effect whether one contracts aids or not in the general population?
+
+$H_0$: The vacine has no effect that one contracts aids or not.
+
+$H_A$: The vacine does have an effect. 
+
+# Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
@@ -31,15 +47,305 @@ A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze 
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
 
+```{r}
+barchartGC(~infected + treatment,data=triUmp,type = "percent" )
+```
+The bar charts shows among those who got aids looks like fewer contracted aids if they had the vacine. 
+
+```{r}
+basicCC <- ggplot(triUmp,aes(x=infected,fill=treatment))
+basicCC + geom_bar()
+basicCC + geom_bar(position=position_dodge())
+
+```
+
+
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+table1 <- xtabs(~infected + treatment,data=triUmp)
+rowPerc(table1)
+colPerc(table1)
+```
+
+these tables show the numerical results by percentage...
 
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The chances are 2 in a billion that we would get these results if the NH were true. therefore we reject the NH. 
+
+
+# question2
+
+does the vacine effect whether one contracts aids or not among females.
+
+$H_0$: The vacine has no effect that one contracts aids or not.
+
+$H_A$: The vacine does have an effect. 
+
+# Results
+
+<!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+## Descriptive Results
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+```{r}
+females <- filter(triUmp,gender =="F")
+barchartGC(~infected + treatment,data=females,type = "percent" )
+```
+The bar charts shows that it did have an affect on weather female aquired aids. The affect show that it worked backwards. They received aids more.  
+
+The bar chart shows tht vacine did effect wheater a female contacted aids by making them more susceptible.
+
+
+```{r}
+basicCC <- ggplot(females,aes(x=infected,fill=treatment))
+basicCC + geom_bar()
+basicCC + geom_bar(position=position_dodge())
+
+```
+
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+table2 <- xtabs(~infected + treatment,data=females)
+rowPerc(table2)
+colPerc(table2)
+```
+
+these tables show blah blah blah...
+
+## Inferential Results
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+
+```{r}
+chisq.test(table2)
+chisqtestGC(table2)
+fisher.test(table2)
+```
+
+The chances are 2 in a billion that we would get these results if the NH were true. there fore we reject the NH.
+
 # Discussion and Conclusion
+
+Pvalue is less than .05, therefore we reject the NH. The vacine worked backwards so female population should avoid the vacine. 
+
+<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+
+# question3 
+
+does the vacine effect whether one contracts aids or not among males.
+
+$H_0$: The vacine has no effect that one contracts aids or not.
+
+$H_A$: The vacine does have an effect. 
+
+# Results
+
+<!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+## Descriptive Results
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+```{r}
+males <- filter(triUmp,gender =="M")
+barchartGC(~infected + treatment,data=males,type = "percent" )
+```
+The bar charts shows that it did have an affect on whether male aquired aids.  
+
+
+
+```{r}
+basicCC <- ggplot(males,aes(x=infected,fill=treatment))
+basicCC + geom_bar()
+basicCC + geom_bar(position=position_dodge())
+
+```
+
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+table3 <- xtabs(~infected + treatment,data=males)
+rowPerc(table3)
+colPerc(table3)
+```
+
+these tables show blah blah blah...
+
+## Inferential Results
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+
+```{r}
+chisq.test(table3)
+chisqtestGC(table3)
+fisher.test(table3)
+```
+
+The chances are 2 in a billion that we would get these results if the NH were true. there fore we reject the NH.
+
+# Discussion and Conclusion
+
+Pvalue is less than .05, so I reject the NH. We have evidence the it works on the male population.  
+
+<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+
+# question4 
+
+does the vacine effect whether one contracts aids or not among drug users.
+
+$H_0$: The vacine has no effect that one contracts aids or not.
+
+$H_A$: The vacine does have an effect. 
+
+# Results
+
+<!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+## Descriptive Results
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+```{r}
+CrackHead <- filter(triUmp,DrugUser =="yes")
+barchartGC(~infected + treatment,data=CrackHead,type = "percent" )
+```
+The bar charts shows that it did have an affect on whether male aquired aids.  
+
+
+
+```{r}
+basicCC <- ggplot(CrackHead,aes(x=infected,fill=treatment))
+basicCC + geom_bar()
+basicCC + geom_bar(position=position_dodge())
+
+```
+
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+table4 <- xtabs(~infected + treatment,data=CrackHead)
+rowPerc(table4)
+colPerc(table4)
+```
+
+these tables show blah blah blah...
+
+## Inferential Results
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+
+```{r}
+chisq.test(table4)
+chisqtestGC(table4)
+fisher.test(table4)
+```
+
+The chances are 2 in a billion that we would get these results if the NH were true. there fore we reject the NH.
+
+# Discussion and Conclusion
+
+Pvalue is less than .05, so I reject the NH. We have evidence the it works on the DrugUser population.  
+
+<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+# question5
+
+does the vacine effect whether one contracts aids or not among LBGTQ.
+
+$H_0$: The vacine has no effect that one contracts aids or not.
+
+$H_A$: The vacine does have an effect. 
+
+# Results
+
+<!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+## Descriptive Results
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+```{r}
+lbgtqdata <- filter(triUmp, LGBTQ !="straight")
+barchartGC(~infected + treatment,data=lbgtqdata,type = "percent" )
+```
+The bar charts shows that it did have an affect on weather lbgtqdata aquired aids. The affect show that it worked backwards. They received aids more.  
+
+The bar chart shows tht vacine did effect wheater a lbgtqdata contacted aids by making them more susceptible.
+
+
+```{r}
+basicCC <- ggplot(lbgtqdata,aes(x=infected,fill=treatment))
+basicCC + geom_bar()
+basicCC + geom_bar(position=position_dodge())
+
+```
+
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+table5 <- xtabs(~infected + treatment,data=lbgtqdata)
+rowPerc(table5)
+colPerc(table5)
+```
+
+these tables show blah blah blah...
+
+## Inferential Results
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+
+```{r}
+chisq.test(table5)
+chisqtestGC(table5)
+fisher.test(table5)
+```
+
+The chances are 2 in a billion that we would get these results if the NH were true. there fore we reject the NH.
+
+# Discussion and Conclusion
+
+Pvalue is less than .05, therefore we reject the NH. The vacine worked backwards so lbgtq population should avoid the vacine. 
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
