@@ -131,7 +131,8 @@ rowPerc(table2)
 colPerc(table2)
 ```
 
-these tables show blah blah blah...
+
+Acording to the NR the female population that took the drug were 58.82% which were likely to be infected w/aids. The females that didn't take the drug were only 48.06% likely to get infected.
 
 ## Inferential Results
 
@@ -144,7 +145,7 @@ chisqtestGC(table2)
 fisher.test(table2)
 ```
 
-The chances are 2 in a billion that we would get these results if the NH were true. there fore we reject the NH.
+according to the fisher exact test the odds are 1.5 in females taking the drug and contracting aids. Therefore the females have 1.5 chance of getting aids over those that take the placebo.
 
 # Discussion and Conclusion
 
@@ -197,7 +198,7 @@ rowPerc(table3)
 colPerc(table3)
 ```
 
-these tables show blah blah blah...
+According to NR the men who took the drug were 31.42% likely to get aids. The men who did not take the drug were 50.38% likey to become infected. The men with a higher chance to become infected were those that took the placebo. 
 
 ## Inferential Results
 
@@ -210,7 +211,7 @@ chisqtestGC(table3)
 fisher.test(table3)
 ```
 
-The chances are 2 in a billion that we would get these results if the NH were true. there fore we reject the NH.
+According to the FE test, the odds ratio of male taking the drug is .045 that aquired aids. Therefore the males have half a chance of the males that are taking placebo. 
 
 # Discussion and Conclusion
 
@@ -263,7 +264,8 @@ rowPerc(table4)
 colPerc(table4)
 ```
 
-these tables show blah blah blah...
+According to NR the Crackheads who took the drug were 24.29% likely to get aids. The Crackheads who did not take the drug were 47.59% likey to become infected. The Crackheads with a higher chance to become infected were those that took the placebo. 
+
 
 ## Inferential Results
 
@@ -276,7 +278,7 @@ chisqtestGC(table4)
 fisher.test(table4)
 ```
 
-The chances are 2 in a billion that we would get these results if the NH were true. there fore we reject the NH.
+According to the FE test, the odds ratio of Crackheads taking the drug is .35 that aquired aids. Therefore the Crackheads have 65% chance of the Crackheads that are taking placebo. 
 
 # Discussion and Conclusion
 
@@ -329,7 +331,7 @@ rowPerc(table5)
 colPerc(table5)
 ```
 
-these tables show blah blah blah...
+Acording to the NR the LGBTQ population that took the drug were 72.38% which were likely to be infected w/aids. The LGBTQ that didn't take the drug were only 49.05% likely to get infected.
 
 ## Inferential Results
   
@@ -342,7 +344,9 @@ chisqtestGC(table5)
 fisher.test(table5)
 ```
 
-The chances are 2 in a billion that we would get these results if the NH were true. there fore we reject the NH.
+according to the fisher exact test the odds are 2.7 in LGBTQ taking the drug and contracting aids. Therefore the LGBTQ have 2.7 chance of getting aids over those that take the placebo.
+
+
 
 # Discussion and Conclusion
 
